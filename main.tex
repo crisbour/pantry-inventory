@@ -1,0 +1,100 @@
+\documentclass{article}
+
+\usepackage{amsmath} % For advanced math formatting
+\usepackage{amssymb} % For additional math symbols
+\usepackage{color}
+\usepackage{tikz}
+\usepackage{pgfgantt}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{graphicx} % For including images
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{cleveref} % For automatic "Figure" prefix in references
+\usepackage{todonotes}
+\usepackage{svg}
+
+\usepackage[perpage, hang, bottom, symbol*]{footmisc}
+\setlength{\footnotemargin}{0cm}
+\setlength{\footskip}{0.5cm}
+\setfnsymbol{chicago}
+
+\usepackage[margin=1.3cm, top=1cm, bottom=1.5cm]{geometry}
+
+% Redefine autoref names for shorthand references
+\renewcommand{\figureautorefname}{Fig.}
+\renewcommand{\tableautorefname}{Tab.}
+\renewcommand{\equationautorefname}{Eq.}
+\renewcommand{\sectionautorefname}{Sec.}
+\renewcommand{\subsectionautorefname}{Sec.}
+\renewcommand{\subsubsectionautorefname}{Sec.}
+
+%\pagenumbering{gobble}
+
+\usepackage[backend=biber, sorting=none, isbn=false, doi=false, url=true]{biblatex}
+\addbibresource{references.bib}
+
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+
+\begin{document}
+
+\title{%
+  A multi-spectral single photon sensor for enhanced 3D vision \\
+  \large Research Progression Review}
+\author{Vasile Cristian Bourceanu (S2703496)}
+%\date{2024-10-29}
+
+\maketitle
+
+%%%%%%% Add crest %%%%%%%
+% - Uncomment the following lines to add the University Crest
+%\vskip 5mm%
+%\includegraphics[width=2in]{./front/EdUniCrest.eps}\par%
+%\vskip 5mm%
+
+%\begin{abstract}
+%\end{abstract}
+
+\textbf{Disclaimer:} Information in this document is confidential and covered by an NDA between Sony and the University of Edinburgh.
+
+\section{Introduction}
+\label{chap:intro}
+\input{introduction}
+
+\section{Related Work}
+\label{chap:related}
+\input{related_work}
+
+\section{Motivation}
+\label{chap:motivation}
+\input{Motivation}
+
+\section{Aims and Objectives}
+\label{chap:aims_objectives}
+\input{aims_objectives}
+
+\section{Methodology}
+\label{chap:methodology}
+\input{methodology}
+
+\section{Progress}
+\label{chap:progress}
+\input{progress}
+
+\section{Resources}
+\label{chap:resources}
+\input{resources}
+
+\section{Research Plan}
+\label{chap:research_plan}
+\input{research_plan}
+
+\printbibliography
+
+\end{document}
