@@ -42,12 +42,52 @@
 \renewcommand{\textfraction}{0.15}
 \renewcommand{\floatpagefraction}{0.7}
 
+\usepackage{tikz}
+\newcommand{\inventoryrow}[4]{%
+  % #1: Product Name
+  % #2: Supplier
+  % #3: Number of items
+  % #4: Unit per item
+  %\newcommand{\boxwidth}{1.85} % Define  % #3: Number of Filled Boxes
+  \pgfmathsetmacro{\boxwidth}{5.8 / #3} % Dynamically calculate box width
+  \pgfmathtruncatemacro{\lastindex}{#3-1} % Calculate the upper limit of the loop
+  \newcommand{\boxoffset}{12} % Define  % #3: Number of Filled Boxes
+  \begin{tikzpicture}[baseline]
+    % Product Name
+    \node[anchor=west] (prod) at (0,0) {#1};
+    % Supplier
+    \node[anchor=west] (supp) at (8,0) {#2};
+    % Boxes (start at x=8)
+    \foreach \i in {0,...,\lastindex} {
+      \draw[green,fill=none] (\boxoffset + \boxwidth*\i, -0.3) rectangle
+        ++(0.2,0.6);
+      \node[rotate=90, anchor=center, font=\scriptsize] at (\boxoffset +
+        \boxwidth*\i + 0.1, 0) {open};
+      \draw[blue,fill=none] (\boxoffset + 0.3 + \boxwidth*\i, -0.3) rectangle
+        ++(\boxwidth-0.5, 0.6);
+      \node[anchor=west] at (\boxoffset + \boxwidth*\i+0.25, 0) {#4};
+    }
+  \end{tikzpicture}%
+}
+
+\newcommand{\inventoryheader}{
+
+  \newcommand{\boxoffset}{12} % Define  % #3: Number of Filled Boxes
+  \begin{tikzpicture}[baseline]
+    % Product Name
+    \node[anchor=west] (prod) at (0,0) {Item};
+    % Supplier
+    \node[anchor=west] (supp) at (8,0) {Supplier};
+    % Used quantity
+    \node[anchor=west] (quant) at (\boxoffset, 0) {Used quantity};
+  \end{tikzpicture}%
+}
+
+
 \begin{document}
 
-\title{%
-  A multi-spectral single photon sensor for enhanced 3D vision \\
-  \large Research Progression Review}
-\author{Vasile Cristian Bourceanu (S2703496)}
+\title{Pantry Inventory}
+\author{Cristian Bourceanu}
 %\date{2024-10-29}
 
 \maketitle
@@ -61,40 +101,75 @@
 %\begin{abstract}
 %\end{abstract}
 
-\textbf{Disclaimer:} Information in this document is confidential and covered by an NDA between Sony and the University of Edinburgh.
+\newpage
 
-\section{Introduction}
-\label{chap:intro}
-\input{introduction}
+\inventoryheader
 
-\section{Related Work}
-\label{chap:related}
-\input{related_work}
+\section{Herbs}
+\label{chap:herbs}
 
-\section{Motivation}
-\label{chap:motivation}
-\input{Motivation}
+\inventoryrow{Paprika Powder}{Natco}{1}{400g}                    \\
+\inventoryrow{Paprika Spanish}{BWFO}{2}{125g}                    \\
+\inventoryrow{Spanish Paprika}{Lupe Pinto}{1}{75g}               \\
+\inventoryrow{Cinnamon Sticks}{Natco}{1}{50g}                    \\
+\inventoryrow{Bay Leaves}{HS}{2}{100g}                           \\
+\inventoryrow{Oregano}{BWFO}{2}{125g}                            \\
+\inventoryrow{Cardamom}{}{1}{50g}                                \\
+\inventoryrow{Thyme}{}{2}{20g}                                   \\
+\inventoryrow{Basil}{}{1}{18g}                                   \\
+\inventoryrow{Sumac}{}{1}{100g}                                  \\
+\inventoryrow{Cloves}{}{1}{50g}                                  \\
+\inventoryrow{Cinnamon Powder}{}{1}{100g}                        \\
+\inventoryrow{Cinnamon Powder (Premimum)}{}{1}{100g}                        \\
+\inventoryrow{Black Whole Peppercorns}{}{1}{100g}                \\
+\inventoryrow{Kashmiri Chilli Powder}{}{1}{100g}                 \\
+\inventoryrow{Fennel Powder}{}{1}{100g}                          \\
+\inventoryrow{Fennel Seeds}{}{1}{50g}                            \\
+\inventoryrow{Madras Curry Powder}{Natco}{1}{100g}               \\
+\inventoryrow{Fenugreek seeds}{Natco}{1}{100g}                   \\
 
-\section{Aims and Objectives}
-\label{chap:aims_objectives}
-\input{aims_objectives}
+\section{Cooking}
+\label{chap:cooking}
 
-\section{Methodology}
-\label{chap:methodology}
-\input{methodology}
+\inventoryrow{Organic Pinto Beans}{HS}{1}{2kg}                   \\
+\inventoryrow{Organic Black Turtle Beans}{BWFO}{1}{2.5kg}        \\
+\inventoryrow{Black Eye Beans}{}{1}{800g}                        \\
+\inventoryrow{Black Eye Beans}{Natco}{1}{2kg}                    \\
+\inventoryrow{Mung Beans}{Natco}{1}{2kg}                         \\
+\inventoryrow{Brown Chick Peas}{Natco}{1}{2kg}                   \\
+\inventoryrow{Organic Chickpeas}{HS}{1}{2kg}                     \\
+\inventoryrow{Chickpeas}{HS}{1}{2kg}                             \\
+\inventoryrow{Organic Black (Beluga) Lentils}{BWFO}{1}{1kg}      \\
+\inventoryrow{Organic Red Split Lentils}{Rahman}{1}{1kg}         \\ % open
+\inventoryrow{Organic Red Split Lentils}{HS}{1}{2kg}             \\
+\inventoryrow{Organic Red Rice}{HS}{2}{2kg}                      \\
+\inventoryrow{Basmati Rice}{}{1}{1kg}                      \\
+\inventoryrow{Organic Wholewheat Pasta - Macaroni}{BWFO}{1}{1kg} \\
+\inventoryrow{Wholewheat Lasagne Sheets}{Sainsbury}{3}{500g} \\
+\inventoryrow{Plain Soya Chunks}{BWFO}{2}{500g}                  \\
+\inventoryrow{Plain Soya Mince}{BWFO}{2}{500g}                   \\
+\inventoryrow{Amaranth Grain}{BWFO}{1}{500g}                   \\
+\inventoryrow{Coconut Milk Full Case}{Natco}{1}{6x400ml}         \\
+\inventoryrow{Tomatoes Chopped Full Case}{Natco}{3}{12x400g}     \\
 
-\section{Progress}
-\label{chap:progress}
-\input{progress}
 
-\section{Resources}
-\label{chap:resources}
-\input{resources}
+\section{Cereals \& Miscs}
+\label{chap:cereals}
 
-\section{Research Plan}
-\label{chap:research_plan}
-\input{research_plan}
+\inventoryrow{Organic Bran Sticks}{HS}{3}{1kg}                   \\
+\inventoryrow{Organic Oatbran}{BWFO}{3}{1kg}                     \\
+\inventoryrow{Organic Lions Mane Mushroom Powder}{HS}{1}{250g}   \\
+\inventoryrow{Organic Raw Cacao Nibs}{HS}{1}{1kg}                \\
+\inventoryrow{Organic Chia Seeds}{HS}{1}{1kg}                    \\
+\inventoryrow{Organic Ground Flaxseed}{HS}{1}{1kg}               \\
+\inventoryrow{Organic Pumpkin Seeds}{HS}{1}{1kg}                 \\
+\inventoryrow{Cashew Nuts Whole}{BWFO}{1}{500g}                  \\
+\inventoryrow{Smooth Almond Butter}{HS}{1}{170g}                 \\
 
-\printbibliography
+\section{Baking}
+\label{chap:baking}
+\inventoryrow{Brown Sugar}{HS}{1}{500g}                   \\
+\inventoryrow{Desicated Coconut}{Rahman}{1}{700g}         \\
+\inventoryrow{Wholemeat wheat flour}{Lidl}{1}{1kg}        \\
 
 \end{document}
