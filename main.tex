@@ -42,6 +42,8 @@
 \renewcommand{\textfraction}{0.15}
 \renewcommand{\floatpagefraction}{0.7}
 
+\newcommand{\boxoffset}{12} % Define  % #3: Number of Filled Boxes
+
 \usepackage{tikz}
 \newcommand{\inventoryrow}[4]{%
   % #1: Product Name
@@ -51,7 +53,6 @@
   %\newcommand{\boxwidth}{1.85} % Define  % #3: Number of Filled Boxes
   \pgfmathsetmacro{\boxwidth}{5.8 / #3} % Dynamically calculate box width
   \pgfmathtruncatemacro{\lastindex}{#3-1} % Calculate the upper limit of the loop
-  \newcommand{\boxoffset}{12} % Define  % #3: Number of Filled Boxes
   \begin{tikzpicture}[baseline]
     % Product Name
     \node[anchor=west] (prod) at (0,0) {#1};
@@ -71,8 +72,6 @@
 }
 
 \newcommand{\inventoryheader}{
-
-  \newcommand{\boxoffset}{12} % Define  % #3: Number of Filled Boxes
   \begin{tikzpicture}[baseline]
     % Product Name
     \node[anchor=west] (prod) at (0,0) {Item};
